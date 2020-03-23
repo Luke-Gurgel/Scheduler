@@ -1,13 +1,13 @@
 export enum ThemeAction {
-  TOGGLE = "TOGGLE",
+  TOGGLE_THEME = "TOGGLE_THEME",
 }
 
-export interface ToggleAction {
-  type: typeof ThemeAction.TOGGLE
+export interface ToggleThemeAction {
+  type: typeof ThemeAction.TOGGLE_THEME
 }
 
-export type ThemeActionType = ToggleAction
+export type ThemeActionType = ToggleThemeAction
 
-export const toggleAction = () => ({
-  type: ThemeAction.TOGGLE,
+export const toggleThemeAction = () => ({
+  type: ThemeAction.TOGGLE_THEME,
 })

@@ -17,7 +17,7 @@ export const FlexContainer = styled.div`
 `
 
 export const MenuContainer = styled(FlexContainer)`
-  @media screen and (min-width: 650px) {
+  @media screen and (min-width: 768px) {
     display: none;
   }
 `
@@ -25,7 +25,7 @@ export const MenuContainer = styled(FlexContainer)`
 export const DesktopContainer = styled.div`
   display: flex;
 
-  @media screen and (max-width: 650px) {
+  @media screen and (max-width: 768px) {
     display: none;
   }
 `
@@ -65,39 +65,13 @@ export const Button = styled.button`
   }
 `
 
-export const MenuButton = styled.div`
-  display: flex;
-  flex-direction: column;
-`
-
-export const MenuButtonDash = styled.div`
-  width: 25px;
-  height: 2px;
-  margin: 2px 0;
-  border-radius: 10px;
-  transition-duration: 0.3s;
-  background-color: ${(props: ThemeProps) => `${props.theme.txt1}`};
-
-  &.one.on {
-    transform: rotate(45deg) translate(3px, 8px);
-  }
-
-  &.two.on {
-    opacity: 0;
-  }
-
-  &.three.on {
-    transform: rotate(-45deg) translate(1px, -5px);
-  }
-`
-
 export const ThemeSwitch = styled(Switch).attrs((props: ThemeProps) => ({
   width: 50,
   height: 25,
   handleDiameter: 30,
   offColor: props.theme.bg3,
-  offHandleColor: props.theme.bg1,
   onColor: props.theme.primary,
+  offHandleColor: props.theme.bg1,
   onHandleColor: props.theme.primary100,
   boxShadow: "0px 1px 5px rgba(80, 80, 80, 0.6)",
   activeBoxShadow: "0px 0px 1px 8px rgba(0, 0, 0, 0.2)",

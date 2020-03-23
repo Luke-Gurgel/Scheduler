@@ -1,36 +1,26 @@
-import React, { useState } from "react"
+import React from "react"
 import useTopBar from "./use-topbar"
 import * as Styled from "./styled"
+import BurgerMenu from "../burger-menu"
 import logo from "src/assets/logo.svg"
 import dark from "src/assets/dark.svg"
 import light from "src/assets/light.svg"
 
 const TopBar = () => {
-  const { darkMode, toggleTheme } = useTopBar()
-  const [on, setOn] = useState(false)
-
-  const toggleMenu = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    event.preventDefault()
-    setOn(!on)
-  }
+  const { sideDrawer, theme } = useTopBar()
 
   return (
     <Styled.Header>
       <Styled.MenuContainer>
-        <Styled.MenuButton onClick={toggleMenu}>
-          <Styled.MenuButtonDash className={`one ${on ? "on" : ""}`} />
-          <Styled.MenuButtonDash className={`two ${on ? "on" : ""}`} />
-          <Styled.MenuButtonDash className={`three ${on ? "on" : ""}`} />
-        </Styled.MenuButton>
+        <BurgerMenu open={sideDrawer.open} onClick={sideDrawer.toggle} />
       </Styled.MenuContainer>
       <Styled.FlexContainer>
         <Styled.Img src={logo} alt="logo" />
       </Styled.FlexContainer>
       <Styled.DesktopContainer>
         <Styled.ThemeSwitch
-          checked={darkMode}
-          onChange={toggleTheme}
-          className="theme-switch"
+          onChange={theme.toggle}
+          checked={theme.darkMode}
           checkedIcon={
             <Styled.SwitchIconContainer>
               <img src={dark} height={16} width={16} />

@@ -1,12 +1,10 @@
 import { useSelector, useDispatch } from "react-redux"
 import { toggleThemeAction } from "src/state/theme/actions"
-import { toggleSideDrawerAction } from "src/state/side-drawer/actions"
 import { RootState } from "src/state/root-state"
 
-export interface UseTopBar {
+export interface UseSideDrawer {
   sideDrawer: {
     open: boolean
-    toggle: () => void
   }
   theme: {
     darkMode: boolean
@@ -14,12 +12,11 @@ export interface UseTopBar {
   }
 }
 
-export default function useTopBar(): UseTopBar {
+export default function useSideDrawer(): UseSideDrawer {
   const { theme, sideDrawer } = useSelector((state: RootState) => state)
   const dispatch = useDispatch()
 
   const toggleTheme = () => dispatch(toggleThemeAction())
-  const toggleSideDrawer = () => dispatch(toggleSideDrawerAction())
 
   return {
     theme: {
@@ -28,7 +25,6 @@ export default function useTopBar(): UseTopBar {
     },
     sideDrawer: {
       open: sideDrawer.open,
-      toggle: toggleSideDrawer,
     },
   }
 }

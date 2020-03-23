@@ -2,6 +2,7 @@ import React from "react"
 import { dark, light } from "src/themes"
 import { useSelector } from "react-redux"
 import TopBar from "src/components/topbar"
+import SideDrawer from "src/components/side-drawer"
 import { ThemeProps } from "src/types/theme"
 import { RootState } from "src/state/root-state"
 import styled, { ThemeProvider } from "styled-components"
@@ -17,6 +18,7 @@ const Main = () => {
   return (
     <ThemeProvider theme={darkMode ? dark : light}>
       <View>
+        <SideDrawer />
         <TopBar />
       </View>
     </ThemeProvider>
