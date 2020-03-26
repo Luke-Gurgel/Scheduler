@@ -14,9 +14,9 @@ const light: Theme = {
   txt2: "#505050",
   txt3: "#787878",
   bg1: "#fff",
-  bg2: "#fafafa",
-  bg3: "#f0f0f0",
-  bg4: "#e7e7e7",
+  bg2: "#f0f0f0",
+  bg3: "#e7e7e7",
+  bg4: "#d7d7d7",
 }
 
 export default light

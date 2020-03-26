@@ -3,7 +3,7 @@ export interface ThemeState {
 }
 
 const themeState: ThemeState = {
-  darkMode: false,
+  darkMode: true,
 }
 
 export default themeState

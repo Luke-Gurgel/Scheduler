@@ -1,7 +1,5 @@
 import React from "react"
 import * as Styled from "./styled"
-import { useSelector } from "react-redux"
-import { RootState } from "src/state/root-state"
 import useSideDrawer from "./use-side-drawer"
 
 const SideDrawer = () => {
