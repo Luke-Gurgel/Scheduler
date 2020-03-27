@@ -9,7 +9,7 @@ export const Header = styled.header`
   align-items: center;
   justify-content: flex-end;
   font-size: calc(10px + 2vmin);
-  background-color: ${(props: ThemeProps) => `${props.theme.bg1}`};
+  background-color: ${(props: ThemeProps) => props.theme.bg1};
 `
 export const FlexContainer = styled.div`
   display: flex;
@@ -49,10 +49,10 @@ export const Button = styled.button`
   transition: all 0.4s;
   text-decoration: none;
   background-color: transparent;
-  color: ${(props: ThemeProps) => `${props.theme.txt1}`};
+  color: ${(props: ThemeProps) => props.theme.txt1};
 
   :hover {
-    background-color: ${(props: ThemeProps) => `${props.theme.bg2}`};
+    background-color: ${(props: ThemeProps) => props.theme.bg2};
   }
 
   :focus {

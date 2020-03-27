@@ -4,19 +4,19 @@ import { useSelector } from "react-redux"
 import { RootState } from "src/state/root-state"
 import * as Styled from "./styled"
 import Header from "./header"
-import Column from "./column"
+import List from "./list"
 
 const Schedule = () => {
   const { data, currentWeek } = useSelector(
     (state: RootState) => state.schedule,
   )
 
-  function renderColumns() {
-    return data.columnOrder.map((colID, index) => {
-      const col = data.columns[colID]
+  function renderLists() {
+    return data.listOrder.map((listID, index) => {
+      const list = data.lists[listID]
       const date = format(currentWeek[index], "MM/dd")
-      const members = col.memberIDs.map((memberID) => data.members[memberID])
-      return <Column key={col.id} column={col} members={members} date={date} />
+      const members = list.memberIDs.map((memberID) => data.members[memberID])
+      return <List key={list.id} list={list} members={members} date={date} />
     })
   }
 
@@ -24,7 +24,7 @@ const Schedule = () => {
     <Styled.Container>
       <h1>Schedule</h1>
       <Header />
-      <Styled.Grid>{renderColumns()}</Styled.Grid>
+      <Styled.ListContainer>{renderLists()}</Styled.ListContainer>
     </Styled.Container>
   )
 }

@@ -13,7 +13,7 @@ export const Container = styled.div`
     font-size: 1rem;
     font-weight: normal;
     letter-spacing: 3px;
-    color: ${(props: ThemeProps) => `${props.theme.txt2}`};
+    color: ${(props: ThemeProps) => props.theme.txt2};
   }
 
   @media screen and (max-width: 800px) {
@@ -34,13 +34,13 @@ export const ArrowButton = styled.button`
 
   font-size: 1.5rem;
   text-decoration: none;
-  color: ${(props: ThemeProps) => `${props.theme.txt1}`};
+  color: ${(props: ThemeProps) => props.theme.txt1};
 
   @media screen and (hover: hover) and (pointer: fine) {
     :hover {
       width: 6vh;
       height: 6vh;
-      background-color: ${(props: ThemeProps) => `${props.theme.bg3}`};
+      background-color: ${(props: ThemeProps) => props.theme.bg3};
     }
   }
 

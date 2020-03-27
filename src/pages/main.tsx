@@ -8,21 +8,20 @@ import { ThemeProps } from "src/types/theme"
 import { RootState } from "src/state/root-state"
 import styled, { ThemeProvider } from "styled-components"
 import { DragDropContext, DropResult } from "react-beautiful-dnd"
-import {
-  onSingleColumnDrag,
-  onDoubleColumnDrag,
-} from "src/state/schedule/actions"
+import { onSameListDrag, onDiffListDrag } from "src/state/schedule/actions"
 
 const View = styled.div`
   min-height: 100vh;
   min-width: 100vw;
   overflow: hidden;
-  background-color: ${(props: ThemeProps) => `${props.theme.bg1}`};
+  background-color: ${(props: ThemeProps) => props.theme.bg1};
 `
 
 const Main = () => {
   const { theme, schedule } = useSelector((state: RootState) => state)
   const dispatch = useDispatch()
+
+  document.body.style.backgroundColor = theme.darkMode ? dark.bg1 : light.bg1
 
   const onDragEnd = (res: DropResult) => {
     const { source, destination, draggableId } = res
@@ -36,39 +35,35 @@ const Main = () => {
       return
     }
 
-    const sourceCol = schedule.data.columns[source.droppableId]
-    const destCol = schedule.data.columns[destination.droppableId]
+    const sourceList = schedule.data.lists[source.droppableId]
+    const destList = schedule.data.lists[destination.droppableId]
 
-    if (sourceCol === destCol) {
-      const newMemberIDs = sourceCol.memberIDs.filter(
+    if (sourceList === destList) {
+      const newMemberIDs = sourceList.memberIDs.filter(
         (_, i) => i !== source.index,
       )
       newMemberIDs.splice(destination.index, 0, draggableId)
-      const updatedCol = { ...sourceCol, memberIDs: newMemberIDs }
-      return dispatch(onSingleColumnDrag(updatedCol))
+      const updatedList = { ...sourceList, memberIDs: newMemberIDs }
+      return dispatch(onSameListDrag(updatedList))
     }
 
-    const sourceMemberIDs = sourceCol.memberIDs.filter(
+    const sourceMemberIDs = sourceList.memberIDs.filter(
       (_, i) => i !== source.index,
     )
-    const updatedSourceCol = { ...sourceCol, memberIDs: sourceMemberIDs }
+    const updatedSourceList = { ...sourceList, memberIDs: sourceMemberIDs }
 
-    const destMemberIDs = [...destCol.memberIDs]
+    const destMemberIDs = [...destList.memberIDs]
     destMemberIDs.splice(destination.index, 0, draggableId)
-    const updatedDestCol = { ...destCol, memberIDs: destMemberIDs }
+    const updatedDestList = { ...destList, memberIDs: destMemberIDs }
 
-    dispatch(onDoubleColumnDrag(updatedSourceCol, updatedDestCol))
+    dispatch(onDiffListDrag(updatedSourceList, updatedDestList))
   }
 
   return (
     <ThemeProvider theme={theme.darkMode ? dark : light}>
       <View>
         <TopBar />
-        <DragDropContext
-          onDragEnd={onDragEnd}
-          onDragStart={() => console.log("dragStart")}
-          onDragUpdate={() => console.log("onDragUpdate")}
-        >
+        <DragDropContext onDragEnd={onDragEnd}>
           <Schedule />
         </DragDropContext>
         <SideDrawer />

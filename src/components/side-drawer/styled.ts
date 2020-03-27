@@ -14,7 +14,7 @@ export const Drawer = styled.nav<{ open: boolean }>`
   position: absolute;
   flex-direction: column;
   transition: transform 0.3s ease-in-out;
-  background: ${(props: ThemeProps) => `${props.theme.bg3}`};
+  background: ${(props: ThemeProps) => props.theme.bg3};
   transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
 
   img {
@@ -35,7 +35,7 @@ export const Drawer = styled.nav<{ open: boolean }>`
     color: ${({ theme }) => theme.txt1};
 
     :active {
-      background-color: ${(props: ThemeProps) => `${props.theme.bg4}`};
+      background-color: ${(props: ThemeProps) => props.theme.bg4};
     }
 
     span {
@@ -53,7 +53,7 @@ export const ProfilePicItem = styled.div`
   span {
     margin-top: 8px;
     font-weight: bold;
-    color: ${(props: ThemeProps) => `${props.theme.txt3}`};
+    color: ${(props: ThemeProps) => props.theme.txt3};
   }
 `
 
@@ -66,7 +66,7 @@ export const ThemeSwitchItem = styled.div`
 
   span {
     font-weight: bold;
-    color: ${(props: ThemeProps) => `${props.theme.txt1}`};
+    color: ${(props: ThemeProps) => props.theme.txt1};
   }
 `
 

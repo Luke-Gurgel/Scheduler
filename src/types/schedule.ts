@@ -1,3 +1,5 @@
+import { Member } from "./member"
+
 export enum WeekDay {
   MON = "Mon",
   TUE = "Tue",
@@ -10,22 +12,16 @@ export enum WeekDay {
 
 export interface ScheduleData {
   members: {
-    [key: string]: MemberColumnItem
+    [key: string]: Member
   }
-  columns: {
-    [key: string]: ScheduleColumn
+  lists: {
+    [key: string]: ScheduleList
   }
-  columnOrder: string[]
+  listOrder: string[]
 }
 
-export interface ScheduleColumn {
+export interface ScheduleList {
   id: string
   weekDay: WeekDay
   memberIDs: string[]
-}
-
-export interface MemberColumnItem {
-  id: string
-  name: string
-  role: string
 }

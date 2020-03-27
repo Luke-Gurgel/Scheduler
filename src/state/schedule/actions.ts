@@ -1,21 +1,21 @@
-import { ScheduleColumn } from "src/types/schedule"
+import { ScheduleList } from "src/types/schedule"
 
 export enum ScheduleAction {
-  ON_SINGLE_COLUMN_DRAG = "ON_SINGLE_COLUMN_DRAG",
-  ON_DOUBLE_COLUMN_DRAG = "ON_DOUBLE_COLUMN_DRAG",
+  ON_SAME_LIST_DRAG = "ON_SAME_LIST_DRAG",
+  ON_DIFF_LIST_DRAG = "ON_DIFF_LIST_DRAG",
   GET_NEXT_WEEK = "GET_NEXT_WEEK",
   GET_PREV_WEEK = "GET_PREV_WEEK",
 }
 
-export interface OnSingleColumnDrag {
-  type: typeof ScheduleAction.ON_SINGLE_COLUMN_DRAG
-  updatedCol: ScheduleColumn
+export interface OnSameListDrag {
+  type: typeof ScheduleAction.ON_SAME_LIST_DRAG
+  updatedList: ScheduleList
 }
 
-export interface OnDoubleColumnDrag {
-  type: typeof ScheduleAction.ON_DOUBLE_COLUMN_DRAG
-  sourceCol: ScheduleColumn
-  destCol: ScheduleColumn
+export interface OnDiffListDrag {
+  type: typeof ScheduleAction.ON_DIFF_LIST_DRAG
+  sourceList: ScheduleList
+  destList: ScheduleList
 }
 
 export interface GetNextWeekAction {
@@ -29,23 +29,23 @@ export interface GetPrevWeekAction {
 }
 
 export type ScheduleActionType =
-  | OnSingleColumnDrag
-  | OnDoubleColumnDrag
+  | OnSameListDrag
+  | OnDiffListDrag
   | GetNextWeekAction
   | GetPrevWeekAction
 
-export const onSingleColumnDrag = (updatedCol: ScheduleColumn): OnSingleColumnDrag => ({
-  updatedCol,
-  type: ScheduleAction.ON_SINGLE_COLUMN_DRAG,
+export const onSameListDrag = (updatedList: ScheduleList): OnSameListDrag => ({
+  updatedList,
+  type: ScheduleAction.ON_SAME_LIST_DRAG,
 })
 
-export const onDoubleColumnDrag = (
-  sourceCol: ScheduleColumn,
-  destCol: ScheduleColumn,
-): OnDoubleColumnDrag => ({
-  destCol,
-  sourceCol,
-  type: ScheduleAction.ON_DOUBLE_COLUMN_DRAG,
+export const onDiffListDrag = (
+  sourceList: ScheduleList,
+  destList: ScheduleList,
+): OnDiffListDrag => ({
+  destList,
+  sourceList,
+  type: ScheduleAction.ON_DIFF_LIST_DRAG,
 })
 
 export const getNextWeekAction = (nextWeek: Date[]): GetNextWeekAction => ({

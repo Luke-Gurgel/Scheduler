@@ -1,4 +1,10 @@
-import { startOfWeek, endOfWeek, eachDayOfInterval, addWeeks, subWeeks } from "date-fns"
+import {
+  addWeeks,
+  subWeeks,
+  endOfWeek,
+  startOfWeek,
+  eachDayOfInterval,
+} from "date-fns"
 
 export const getCurrentWeek = (): Date[] => {
   const start = startOfWeek(new Date())

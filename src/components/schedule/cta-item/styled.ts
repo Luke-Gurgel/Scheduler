@@ -3,21 +3,15 @@ import { ThemeProps } from "src/types/theme"
 
 export const AddButton = styled.button`
   display: flex;
-  height: 8vh;
+  min-height: 8vh;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
+  border-radius: 6px;
   position: relative;
   border: none;
   overflow: hidden;
   transition: background-color 0.4s ease;
-  background-color: ${(props: ThemeProps) => `${props.theme.bg3}`};
-
-  @media screen and (hover: hover) and (pointer: fine) {
-    :hover {
-      background-color: ${(props: ThemeProps) => `${props.theme.primary}`};
-    }
-  }
+  background-color: ${(props: ThemeProps) => props.theme.bg3};
 
   :focus {
     outline: none;
@@ -42,7 +36,14 @@ export const AddButton = styled.button`
     transform: translate(-50%, -50%) scale(0);
   }
 
+  @media screen and (hover: hover) and (pointer: fine) {
+    :hover {
+      background-color: ${(props: ThemeProps) => props.theme.primary};
+    }
+  }
+
   @media screen and (max-width: 800px) {
     padding: 0 3vh;
+    min-width: 80px;
   }
 `

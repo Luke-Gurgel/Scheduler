@@ -6,26 +6,26 @@ export default function scheduleReducer(
   action: ScheduleActionType,
 ): ScheduleState {
   switch (action.type) {
-    case ScheduleAction.ON_SINGLE_COLUMN_DRAG:
+    case ScheduleAction.ON_SAME_LIST_DRAG:
       return {
         ...state,
         data: {
           ...state.data,
-          columns: {
-            ...state.data.columns,
-            [action.updatedCol.id]: action.updatedCol,
+          lists: {
+            ...state.data.lists,
+            [action.updatedList.id]: action.updatedList,
           },
         },
       }
-    case ScheduleAction.ON_DOUBLE_COLUMN_DRAG:
+    case ScheduleAction.ON_DIFF_LIST_DRAG:
       return {
         ...state,
         data: {
           ...state.data,
-          columns: {
-            ...state.data.columns,
-            [action.sourceCol.id]: action.sourceCol,
-            [action.destCol.id]: action.destCol,
+          lists: {
+            ...state.data.lists,
+            [action.sourceList.id]: action.sourceList,
+            [action.destList.id]: action.destList,
           },
         },
       }

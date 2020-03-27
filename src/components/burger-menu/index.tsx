@@ -16,7 +16,7 @@ const StyledBurger = styled(Burger)`
   .burger-lines,
   .burger-lines:after,
   .burger-lines:before {
-    background-color: ${(props: ThemeProps) => `${props.theme.txt1}`};
+    background-color: ${(props: ThemeProps) => props.theme.txt1};
   }
 `
 

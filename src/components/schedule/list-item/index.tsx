@@ -1,10 +1,10 @@
-import React from "react"
+import React, { memo } from "react"
 import * as Styled from "./styled"
 import { Draggable } from "react-beautiful-dnd"
-import { MemberColumnItem } from "src/types/schedule"
+import { Member } from "src/types/member"
 
 interface Props {
-  item: MemberColumnItem
+  item: Member
   index: number
 }
 
@@ -26,4 +26,4 @@ const ColumnItem = ({ item, index }: Props) => {
   )
 }
 
-export default ColumnItem
+export default memo(ColumnItem)

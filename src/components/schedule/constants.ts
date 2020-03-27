@@ -13,7 +13,7 @@ export const initialData: ScheduleData = {
     nine: { id: "nine", name: "Tim", role: "ICU" },
     ten: { id: "ten", name: "Leah", role: "ICU" },
   },
-  columns: {
+  lists: {
     "1": {
       id: "1",
       weekDay: WeekDay.SUN,
@@ -50,5 +50,5 @@ export const initialData: ScheduleData = {
       memberIDs: [],
     },
   },
-  columnOrder: ["1", "2", "3", "4", "5", "6", "7"],
+  listOrder: ["1", "2", "3", "4", "5", "6", "7"],
 }

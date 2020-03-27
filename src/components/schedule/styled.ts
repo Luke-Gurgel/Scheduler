@@ -8,7 +8,7 @@ export const Container = styled.div`
   padding: 0 5vh;
 
   h1 {
-    color: ${(props: ThemeProps) => `${props.theme.txt1}`};
+    color: ${(props: ThemeProps) => props.theme.txt1};
   }
 
   @media screen and (max-width: 800px) {
@@ -16,31 +16,11 @@ export const Container = styled.div`
   }
 `
 
-export const Grid = styled.div`
+export const ListContainer = styled.div`
   display: flex;
   flex-direction: row;
 
   @media screen and (max-width: 800px) {
     flex-direction: column;
-  }
-`
-
-export const GridHeader = styled.div`
-  flex-grow: 1;
-  display: flex;
-  padding: 10px 0;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  border: ${(props: ThemeProps) => `0.5px solid ${props.theme.bg3}`};
-
-  span:nth-child(1) {
-    font-weight: bold;
-    color: ${(props: ThemeProps) => `${props.theme.txt2}`};
-  }
-
-  span:nth-child(2) {
-    font-size: 0.8rem;
-    color: ${(props: ThemeProps) => `${props.theme.txt3}`};
   }
 `

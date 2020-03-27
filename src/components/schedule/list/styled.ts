@@ -40,14 +40,14 @@ export const SectionContainer = styled.div`
 export const WeekDayTitle = styled.h3`
   margin: 15px 0 0 0;
   text-align: center;
-  color: ${(props: ThemeProps) => `${props.theme.txt2}`};
+  color: ${(props: ThemeProps) => props.theme.txt2};
 `
 
 export const DateSubtitle = styled.span`
   padding: 6px 0;
   font-size: 0.7rem;
   text-align: center;
-  color: ${(props: ThemeProps) => `${props.theme.txt3}`};
+  color: ${(props: ThemeProps) => props.theme.txt3};
 `
 
 interface DroppableListProps extends ThemeProps {
