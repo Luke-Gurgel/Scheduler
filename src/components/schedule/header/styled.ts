@@ -21,12 +21,6 @@ export const Container = styled.div`
       font-size: 0.8rem;
     }
   }
-
-  @media screen and (max-width: 425px) {
-    p {
-      font-size: 0.6rem;
-    }
-  }
 `
 
 export const ArrowButton = styled.button`

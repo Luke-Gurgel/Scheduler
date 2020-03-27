@@ -19,7 +19,11 @@ export default function useTopBar(): UseTopBar {
   const dispatch = useDispatch()
 
   const toggleTheme = () => dispatch(toggleThemeAction())
-  const toggleSideDrawer = () => dispatch(toggleSideDrawerAction())
+
+  const toggleSideDrawer = () => {
+    document.body.style.overflow = sideDrawer.open ? "scroll" : "hidden"
+    dispatch(toggleSideDrawerAction())
+  }
 
   return {
     theme: {
