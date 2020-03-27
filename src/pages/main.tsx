@@ -8,10 +8,15 @@ import { ThemeProps } from "src/types/theme"
 import { RootState } from "src/state/root-state"
 import styled, { ThemeProvider } from "styled-components"
 import { DragDropContext, DropResult } from "react-beautiful-dnd"
-import { onSingleColumnDrag, onDoubleColumnDrag } from "src/state/schedule/actions"
+import {
+  onSingleColumnDrag,
+  onDoubleColumnDrag,
+} from "src/state/schedule/actions"
 
 const View = styled.div`
   min-height: 100vh;
+  min-width: 100vw;
+  overflow: hidden;
   background-color: ${(props: ThemeProps) => `${props.theme.bg1}`};
 `
 
@@ -24,7 +29,10 @@ const Main = () => {
 
     if (!destination) return
 
-    if (source.droppableId === destination.droppableId && source.index === destination.index) {
+    if (
+      source.droppableId === destination.droppableId &&
+      source.index === destination.index
+    ) {
       return
     }
 
@@ -32,13 +40,17 @@ const Main = () => {
     const destCol = schedule.data.columns[destination.droppableId]
 
     if (sourceCol === destCol) {
-      const newMemberIDs = sourceCol.memberIDs.filter((_, i) => i !== source.index)
+      const newMemberIDs = sourceCol.memberIDs.filter(
+        (_, i) => i !== source.index,
+      )
       newMemberIDs.splice(destination.index, 0, draggableId)
       const updatedCol = { ...sourceCol, memberIDs: newMemberIDs }
       return dispatch(onSingleColumnDrag(updatedCol))
     }
 
-    const sourceMemberIDs = sourceCol.memberIDs.filter((_, i) => i !== source.index)
+    const sourceMemberIDs = sourceCol.memberIDs.filter(
+      (_, i) => i !== source.index,
+    )
     const updatedSourceCol = { ...sourceCol, memberIDs: sourceMemberIDs }
 
     const destMemberIDs = [...destCol.memberIDs]
@@ -51,7 +63,6 @@ const Main = () => {
   return (
     <ThemeProvider theme={theme.darkMode ? dark : light}>
       <View>
-        <SideDrawer />
         <TopBar />
         <DragDropContext
           onDragEnd={onDragEnd}
@@ -60,6 +71,7 @@ const Main = () => {
         >
           <Schedule />
         </DragDropContext>
+        <SideDrawer />
       </View>
     </ThemeProvider>
   )

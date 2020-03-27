@@ -26,4 +26,10 @@ export const Container = styled.div<DraggableContainerProps>`
     font-weight: normal;
     color: ${(props: ThemeProps) => `${props.theme.txt3}`};
   }
+
+  @media screen and (max-width: 800px) {
+    margin: 0 15px 0 0;
+    height: 6vh;
+    flex: 0 0 auto;
+  }
 `

@@ -7,11 +7,15 @@ const Header = () => {
 
   return (
     <Styled.Container>
-      <Styled.ArrowButton onClick={() => moveToPrevWeek()}>←</Styled.ArrowButton>
+      <Styled.ArrowButton onClick={() => moveToPrevWeek()}>
+        ←
+      </Styled.ArrowButton>
       <p>
-        {startDate} -- {endDate}
+        {startDate} - {endDate}
       </p>
-      <Styled.ArrowButton onClick={() => moveToNextWeek()}>→</Styled.ArrowButton>
+      <Styled.ArrowButton onClick={() => moveToNextWeek()}>
+        →
+      </Styled.ArrowButton>
     </Styled.Container>
   )
 }

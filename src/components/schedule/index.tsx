@@ -7,7 +7,9 @@ import Header from "./header"
 import Column from "./column"
 
 const Schedule = () => {
-  const { data, currentWeek } = useSelector((state: RootState) => state.schedule)
+  const { data, currentWeek } = useSelector(
+    (state: RootState) => state.schedule,
+  )
 
   function renderColumns() {
     return data.columnOrder.map((colID, index) => {

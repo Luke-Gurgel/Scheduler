@@ -15,12 +15,25 @@ export const Container = styled.div`
     letter-spacing: 3px;
     color: ${(props: ThemeProps) => `${props.theme.txt2}`};
   }
+
+  @media screen and (max-width: 800px) {
+    p {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media screen and (max-width: 425px) {
+    p {
+      font-size: 0.6rem;
+    }
+  }
 `
 
 export const ArrowButton = styled.button`
-  height: 5vh;
   width: 5vh;
-  border-radius: 2.5vh;
+  height: 5vh;
+  text-align: center;
+  border-radius: 50%;
   transition: all 0.2s;
   background-color: transparent;
   border: none;
@@ -29,11 +42,12 @@ export const ArrowButton = styled.button`
   text-decoration: none;
   color: ${(props: ThemeProps) => `${props.theme.txt1}`};
 
-  :hover {
-    width: 6vh;
-    height: 6vh;
-    border-radius: 3vh;
-    background-color: ${(props: ThemeProps) => `${props.theme.bg3}`};
+  @media screen and (hover: hover) and (pointer: fine) {
+    :hover {
+      width: 6vh;
+      height: 6vh;
+      background-color: ${(props: ThemeProps) => `${props.theme.bg3}`};
+    }
   }
 
   :focus {
@@ -43,5 +57,11 @@ export const ArrowButton = styled.button`
   :active {
     top: 1px;
     position: relative;
+  }
+
+  @media screen and (max-width: 800px) {
+    height: 3vh;
+    width: 3vh;
+    font-size: 0.8rem;
   }
 `

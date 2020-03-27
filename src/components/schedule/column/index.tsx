@@ -28,8 +28,10 @@ const Column = ({ column, members, date }: Props) => {
 
   return (
     <Styled.Container>
-      <Styled.WeekDayTitle>{column.weekDay}</Styled.WeekDayTitle>
-      <Styled.DateSubtitle>{date}</Styled.DateSubtitle>
+      <Styled.SectionContainer>
+        <Styled.WeekDayTitle>{column.weekDay}</Styled.WeekDayTitle>
+        <Styled.DateSubtitle>{date}</Styled.DateSubtitle>
+      </Styled.SectionContainer>
       <Droppable droppableId={column.id}>
         {(provided, snapshot) => (
           <Styled.List

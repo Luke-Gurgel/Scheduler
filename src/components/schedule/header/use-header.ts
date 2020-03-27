@@ -2,7 +2,10 @@ import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "src/state/root-state"
 import { format } from "date-fns"
 import { getNextWeek, getPrevWeek } from "src/helpers/dates"
-import { getNextWeekAction, getPrevWeekAction } from "src/state/schedule/actions"
+import {
+  getNextWeekAction,
+  getPrevWeekAction,
+} from "src/state/schedule/actions"
 
 interface UseHeader {
   startDate: string
@@ -25,10 +28,15 @@ export default function useHeader(): UseHeader {
     dispatch(getPrevWeekAction(prevWeek))
   }
 
+  const condensedFormat = "MM/dd"
+  const extendedFormat = "MMM dd, yy"
+  const responsiveFormat =
+    window.innerWidth > 425 ? extendedFormat : condensedFormat
+
   return {
     moveToNextWeek,
     moveToPrevWeek,
-    startDate: format(currentWeek[0], "MMM dd, yy"),
-    endDate: format(currentWeek[6], "MMM dd, yy"),
+    startDate: format(currentWeek[0], responsiveFormat),
+    endDate: format(currentWeek[6], responsiveFormat),
   }
 }

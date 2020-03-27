@@ -2,8 +2,8 @@ import styled from "styled-components"
 import { ThemeProps } from "src/types/theme"
 
 export const AddButton = styled.button`
-  height: 8vh;
   display: flex;
+  height: 8vh;
   align-items: center;
   justify-content: center;
   border-radius: 12px;
@@ -13,8 +13,10 @@ export const AddButton = styled.button`
   transition: background-color 0.4s ease;
   background-color: ${(props: ThemeProps) => `${props.theme.bg3}`};
 
-  :hover {
-    background-color: ${(props: ThemeProps) => `${props.theme.primary}`};
+  @media screen and (hover: hover) and (pointer: fine) {
+    :hover {
+      background-color: ${(props: ThemeProps) => `${props.theme.primary}`};
+    }
   }
 
   :focus {
@@ -38,5 +40,9 @@ export const AddButton = styled.button`
     transition: 0s;
     opacity: 0.2;
     transform: translate(-50%, -50%) scale(0);
+  }
+
+  @media screen and (max-width: 800px) {
+    padding: 0 3vh;
   }
 `

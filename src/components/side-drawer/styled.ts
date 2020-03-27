@@ -5,7 +5,7 @@ import { ThemeProps } from "src/types/theme"
 export const Drawer = styled.nav<{ open: boolean }>`
   top: 0;
   left: 0;
-  width: 60vw;
+  width: 70vw;
   height: 100vh;
   padding: 1rem;
   display: flex;

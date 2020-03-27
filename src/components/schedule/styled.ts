@@ -10,11 +10,19 @@ export const Container = styled.div`
   h1 {
     color: ${(props: ThemeProps) => `${props.theme.txt1}`};
   }
+
+  @media screen and (max-width: 800px) {
+    padding: 0 2vh;
+  }
 `
 
 export const Grid = styled.div`
   display: flex;
   flex-direction: row;
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+  }
 `
 
 export const GridHeader = styled.div`
