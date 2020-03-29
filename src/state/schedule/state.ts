@@ -1,6 +1,6 @@
-import { ScheduleData } from "src/types/schedule"
-import { initialData } from "src/components/schedule/constants"
-import { getCurrentWeek } from "src/helpers/dates"
+import { ScheduleData } from "src/types"
+import { blankSchedule } from "src/constants"
+import { getCurrentWeek } from "src/helpers/date"
 
 export interface ScheduleState {
   currentWeek: Date[]
@@ -8,7 +8,7 @@ export interface ScheduleState {
 }
 
 const scheduleState: ScheduleState = {
-  data: initialData,
+  data: blankSchedule,
   currentWeek: getCurrentWeek(),
 }
 

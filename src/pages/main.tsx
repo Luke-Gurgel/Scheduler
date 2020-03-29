@@ -4,11 +4,13 @@ import { useSelector, useDispatch } from "react-redux"
 import SideDrawer from "src/components/side-drawer"
 import TopBar from "src/components/topbar"
 import Schedule from "src/components/schedule"
-import { ThemeProps } from "src/types/theme"
+import MemberList from "src/components/members"
 import { RootState } from "src/state/root-state"
 import styled, { ThemeProvider } from "styled-components"
 import { DragDropContext, DropResult } from "react-beautiful-dnd"
-import { onSameListDrag, onDiffListDrag } from "src/state/schedule/actions"
+import { updateWeekDayItemsAction } from "src/state/schedule/actions"
+import { ThemeProps, WeekDayItem, Member, memberListID } from "src/types"
+import { idSeparator } from "src/constants"
 
 const View = styled.div`
   min-height: 100vh;
@@ -18,7 +20,7 @@ const View = styled.div`
 `
 
 const Main = () => {
-  const { theme, schedule } = useSelector((state: RootState) => state)
+  const { theme, schedule, members } = useSelector((state: RootState) => state)
   const dispatch = useDispatch()
 
   document.body.style.backgroundColor = theme.darkMode ? dark.bg1 : light.bg1
@@ -26,7 +28,10 @@ const Main = () => {
   const onDragEnd = (res: DropResult) => {
     const { source, destination, draggableId } = res
 
-    if (!destination) return
+    if (!destination) {
+      // remove member from list if source is not members list
+      return
+    }
 
     if (
       source.droppableId === destination.droppableId &&
@@ -35,28 +40,69 @@ const Main = () => {
       return
     }
 
-    const sourceList = schedule.data.lists[source.droppableId]
-    const destList = schedule.data.lists[destination.droppableId]
+    const updatedItems: { [key: string]: WeekDayItem } = {}
+    const destItem = schedule.data.weekMap[destination.droppableId]
 
-    if (sourceList === destList) {
-      const newMemberIDs = sourceList.memberIDs.filter(
+    const isAddingMemberToItem = source.droppableId === memberListID
+    const isDraggingOnSameItem = source.droppableId === destination.droppableId
+    const isDraggingToDiffItem = source.droppableId !== destination.droppableId
+
+    if (isAddingMemberToItem) {
+      const filtered = destItem.members.filter(
+        (mem) =>
+          mem.id.split(idSeparator)[1] === draggableId.split(idSeparator)[1],
+      )
+
+      if (filtered.length) return
+
+      const member = { ...members.list[source.index] }
+      member.id = `${destination.droppableId}${idSeparator}${
+        draggableId.split(idSeparator)[1]
+      }`
+
+      const destMemberList = [...destItem.members]
+      destMemberList.splice(destination.index, 0, member)
+      const updatedDestItem = { ...destItem, members: destMemberList }
+      updatedItems[destination.droppableId] = updatedDestItem
+    } else if (isDraggingToDiffItem) {
+      const filtered = destItem.members.filter(
+        (mem) =>
+          mem.id.split(idSeparator)[1] === draggableId.split(idSeparator)[1],
+      )
+
+      if (filtered.length) return
+
+      const sourceItem = schedule.data.weekMap[source.droppableId]
+      const member = sourceItem.members.find(
+        (mem) => mem.id === draggableId,
+      ) as Member
+      const sourceMemberList = sourceItem.members.filter(
         (_, i) => i !== source.index,
       )
-      newMemberIDs.splice(destination.index, 0, draggableId)
-      const updatedList = { ...sourceList, memberIDs: newMemberIDs }
-      return dispatch(onSameListDrag(updatedList))
+      const updatedSourceItem = { ...sourceItem, members: sourceMemberList }
+      updatedItems[source.droppableId] = updatedSourceItem
+
+      const destMemberList = [...destItem.members]
+      member.id = `${destination.droppableId}${idSeparator}${
+        draggableId.split(idSeparator)[1]
+      }`
+      destMemberList.splice(destination.index, 0, member)
+      const updatedDestItem = { ...destItem, members: destMemberList }
+      updatedItems[destination.droppableId] = updatedDestItem
+    } else if (isDraggingOnSameItem) {
+      const sourceItem = schedule.data.weekMap[source.droppableId]
+      const member = sourceItem.members.find(
+        (mem) => mem.id === draggableId,
+      ) as Member
+      const updatedMemberList = sourceItem.members.filter(
+        (_, i) => i !== source.index,
+      )
+      updatedMemberList.splice(destination.index, 0, member)
+      const updatedItem = { ...sourceItem, members: updatedMemberList }
+      updatedItems[source.droppableId] = updatedItem
     }
 
-    const sourceMemberIDs = sourceList.memberIDs.filter(
-      (_, i) => i !== source.index,
-    )
-    const updatedSourceList = { ...sourceList, memberIDs: sourceMemberIDs }
-
-    const destMemberIDs = [...destList.memberIDs]
-    destMemberIDs.splice(destination.index, 0, draggableId)
-    const updatedDestList = { ...destList, memberIDs: destMemberIDs }
-
-    dispatch(onDiffListDrag(updatedSourceList, updatedDestList))
+    dispatch(updateWeekDayItemsAction(updatedItems))
   }
 
   return (
@@ -65,6 +111,7 @@ const Main = () => {
         <TopBar />
         <DragDropContext onDragEnd={onDragEnd}>
           <Schedule />
+          <MemberList />
         </DragDropContext>
         <SideDrawer />
       </View>

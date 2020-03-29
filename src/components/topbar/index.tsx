@@ -7,7 +7,7 @@ import dark from "src/assets/dark.svg"
 import light from "src/assets/light.svg"
 
 const TopBar = () => {
-  const { sideDrawer, theme } = useTopBar()
+  const { sideDrawer, theme, openAddMemberModal } = useTopBar()
 
   return (
     <Styled.Header>
@@ -33,7 +33,7 @@ const TopBar = () => {
           }
         />
         <Styled.Button>Schedule History</Styled.Button>
-        <Styled.Button>Add Member</Styled.Button>
+        <Styled.Button onClick={openAddMemberModal}>Add Member</Styled.Button>
         <Styled.ProfilePic src="https://i.pravatar.cc/100" alt="user" />
       </Styled.DesktopContainer>
     </Styled.Header>

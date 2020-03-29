@@ -1,14 +1,14 @@
 import React, { memo } from "react"
 import * as Styled from "./styled"
 import { Draggable } from "react-beautiful-dnd"
-import { Member } from "src/types/member"
+import { Member } from "src/types"
 
 interface Props {
   item: Member
   index: number
 }
 
-const ColumnItem = ({ item, index }: Props) => {
+const ListItem = ({ item, index }: Props) => {
   return (
     <Draggable draggableId={item.id} index={index}>
       {(provided, snapshot) => (
@@ -26,4 +26,4 @@ const ColumnItem = ({ item, index }: Props) => {
   )
 }
 
-export default memo(ColumnItem)
+export default memo(ListItem)

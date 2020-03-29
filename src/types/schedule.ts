@@ -11,17 +11,14 @@ export enum WeekDay {
 }
 
 export interface ScheduleData {
-  members: {
-    [key: string]: Member
+  weekMap: {
+    [key: string]: WeekDayItem
   }
-  lists: {
-    [key: string]: ScheduleList
-  }
-  listOrder: string[]
+  orderedWeekDays: WeekDay[]
 }
 
-export interface ScheduleList {
-  id: string
+export interface WeekDayItem {
+  id: WeekDay
   weekDay: WeekDay
-  memberIDs: string[]
+  members: Member[]
 }

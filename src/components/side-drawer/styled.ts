@@ -1,6 +1,6 @@
 import Switch from "react-switch"
 import styled from "styled-components"
-import { ThemeProps } from "src/types/theme"
+import { ThemeProps } from "src/types"
 
 export const Drawer = styled.nav<{ open: boolean }>`
   top: 0;

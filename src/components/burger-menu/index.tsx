@@ -1,7 +1,7 @@
 import React from "react"
 import Burger from "@animated-burgers/burger-squeeze"
 import "@animated-burgers/burger-squeeze/dist/styles.css"
-import { ThemeProps } from "src/types/theme"
+import { ThemeProps } from "src/types"
 import styled from "styled-components"
 
 interface Props {

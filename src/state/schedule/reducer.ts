@@ -6,26 +6,14 @@ export default function scheduleReducer(
   action: ScheduleActionType,
 ): ScheduleState {
   switch (action.type) {
-    case ScheduleAction.ON_SAME_LIST_DRAG:
+    case ScheduleAction.UPDATE_WEEK_DAY_ITEMS:
       return {
         ...state,
         data: {
           ...state.data,
-          lists: {
-            ...state.data.lists,
-            [action.updatedList.id]: action.updatedList,
-          },
-        },
-      }
-    case ScheduleAction.ON_DIFF_LIST_DRAG:
-      return {
-        ...state,
-        data: {
-          ...state.data,
-          lists: {
-            ...state.data.lists,
-            [action.sourceList.id]: action.sourceList,
-            [action.destList.id]: action.destList,
+          weekMap: {
+            ...state.data.weekMap,
+            ...action.updatedItems,
           },
         },
       }

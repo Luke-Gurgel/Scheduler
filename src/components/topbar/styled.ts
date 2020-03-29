@@ -1,6 +1,6 @@
 import Switch from "react-switch"
 import styled from "styled-components"
-import { ThemeProps } from "src/types/theme"
+import { ThemeProps } from "src/types"
 
 export const Header = styled.header`
   height: 10vh;
@@ -17,7 +17,7 @@ export const FlexContainer = styled.div`
 `
 
 export const MenuContainer = styled(FlexContainer)`
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 771px) {
     display: none;
   }
 `
@@ -25,17 +25,19 @@ export const MenuContainer = styled(FlexContainer)`
 export const DesktopContainer = styled.div`
   display: flex;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 770px) {
     display: none;
   }
 `
 
 export const Img = styled.img`
-  width: 5vh;
-  height: 5vh;
+  width: 4vh;
+  height: 4vh;
 `
 
-export const ProfilePic = styled(Img)`
+export const ProfilePic = styled.img`
+  width: 5vh;
+  height: 5vh;
   border-radius: 2.5vh;
 `
 

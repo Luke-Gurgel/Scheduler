@@ -1,21 +1,20 @@
-import { ScheduleList } from "src/types/schedule"
+import { WeekDayItem } from "src/types"
 
 export enum ScheduleAction {
-  ON_SAME_LIST_DRAG = "ON_SAME_LIST_DRAG",
-  ON_DIFF_LIST_DRAG = "ON_DIFF_LIST_DRAG",
+  UPDATE_WEEK_DAY_ITEMS = "UPDATE_WEEK_DAY_ITEMS",
+
+  ADD_MEMBER = "ADD_MEMBER",
+  REMOVE_MEMBER = "REMOVE_MEMBER",
+
   GET_NEXT_WEEK = "GET_NEXT_WEEK",
   GET_PREV_WEEK = "GET_PREV_WEEK",
 }
 
-export interface OnSameListDrag {
-  type: typeof ScheduleAction.ON_SAME_LIST_DRAG
-  updatedList: ScheduleList
-}
-
-export interface OnDiffListDrag {
-  type: typeof ScheduleAction.ON_DIFF_LIST_DRAG
-  sourceList: ScheduleList
-  destList: ScheduleList
+export interface UpdateWeekDayItemsAction {
+  type: typeof ScheduleAction.UPDATE_WEEK_DAY_ITEMS
+  updatedItems: {
+    [key: string]: WeekDayItem
+  }
 }
 
 export interface GetNextWeekAction {
@@ -29,23 +28,15 @@ export interface GetPrevWeekAction {
 }
 
 export type ScheduleActionType =
-  | OnSameListDrag
-  | OnDiffListDrag
+  | UpdateWeekDayItemsAction
   | GetNextWeekAction
   | GetPrevWeekAction
 
-export const onSameListDrag = (updatedList: ScheduleList): OnSameListDrag => ({
-  updatedList,
-  type: ScheduleAction.ON_SAME_LIST_DRAG,
-})
-
-export const onDiffListDrag = (
-  sourceList: ScheduleList,
-  destList: ScheduleList,
-): OnDiffListDrag => ({
-  destList,
-  sourceList,
-  type: ScheduleAction.ON_DIFF_LIST_DRAG,
+export const updateWeekDayItemsAction = (updatedItems: {
+  [key: string]: WeekDayItem
+}): UpdateWeekDayItemsAction => ({
+  updatedItems,
+  type: ScheduleAction.UPDATE_WEEK_DAY_ITEMS,
 })
 
 export const getNextWeekAction = (nextWeek: Date[]): GetNextWeekAction => ({
@@ -57,3 +48,30 @@ export const getPrevWeekAction = (prevWeek: Date[]): GetPrevWeekAction => ({
   prevWeek,
   type: ScheduleAction.GET_PREV_WEEK,
 })
+
+/*
+
+  1 - drag member to a different position in the same list => {
+    reorderList()
+  }
+
+  2 - drag member from a list into another list => {
+    removeMemberFromSourceList()
+    addMemberToDestList()
+    dedupDestList()
+  }
+
+  3 - drag member out of a list => {
+    removeMemberFromList()
+  }
+
+  4 - drag member from members list into a schedule list => {
+    addMemberToDestList()
+    // leave members list unchanged
+  }
+
+  5 - drag member to a different position in members list => {
+    reorderList()
+  }
+
+*/

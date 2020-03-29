@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { ThemeProps } from "src/types/theme"
+import { ThemeProps } from "src/types"
 
 interface DraggableContainerProps extends ThemeProps {
   isDragging: boolean

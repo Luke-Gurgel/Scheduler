@@ -2,26 +2,21 @@ import React from "react"
 import CTAItem from "../cta-item"
 import * as Styled from "./styled"
 import ListItem from "../list-item"
-import { WeekDay } from "src/types/schedule"
+import { WeekDayItem } from "src/types"
 import { Droppable } from "react-beautiful-dnd"
 
 interface Props {
   date: string
-  list: {
-    id: string
-    weekDay: WeekDay
-    memberIDs: string[]
-  }
-  members: { id: string; name: string; role: string }[]
+  weekDayItem: WeekDayItem
 }
 
-const List = ({ list, members, date }: Props) => {
+const List = ({ weekDayItem, date }: Props) => {
   const renderItems = () => {
-    if (!members.length) {
+    if (!weekDayItem.members.length) {
       return <CTAItem />
     }
 
-    return members.map((member, i) => (
+    return weekDayItem.members.map((member, i) => (
       <ListItem key={member.name} item={member} index={i} />
     ))
   }
@@ -31,10 +26,10 @@ const List = ({ list, members, date }: Props) => {
   return (
     <Styled.Container>
       <Styled.SectionContainer>
-        <Styled.WeekDayTitle>{list.weekDay}</Styled.WeekDayTitle>
+        <Styled.WeekDayTitle>{weekDayItem.weekDay}</Styled.WeekDayTitle>
         <Styled.DateSubtitle>{date}</Styled.DateSubtitle>
       </Styled.SectionContainer>
-      <Droppable droppableId={list.id} direction={listDirection}>
+      <Droppable droppableId={weekDayItem.id} direction={listDirection}>
         {(provided, snapshot) => (
           <Styled.List
             {...provided.droppableProps}

@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { ThemeProps } from "src/types/theme"
+import { ThemeProps } from "src/types"
 
 export const AddButton = styled.button`
   display: flex;

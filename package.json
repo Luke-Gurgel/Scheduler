@@ -9,11 +9,15 @@
     "react": "^16.13.1",
     "react-beautiful-dnd": "^13.0.0",
     "react-dom": "^16.13.1",
+    "react-hook-form": "^5.2.0",
     "react-redux": "^7.2.0",
     "react-scripts": "^3.4.1",
+    "react-spinners-kit": "^1.9.1",
     "react-switch": "^5.0.1",
     "redux": "^4.0.5",
-    "styled-components": "^5.0.1"
+    "rodal": "^1.8.1",
+    "styled-components": "^5.0.1",
+    "uuid": "^7.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -46,6 +50,7 @@
     "@types/react-beautiful-dnd": "^12.1.2",
     "@types/react-redux": "^7.1.7",
     "@types/styled-components": "^5.0.1",
+    "@types/uuid": "^7.0.2",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.24.0",
     "eslint": "^6.8.0",
@@ -57,6 +62,7 @@
     "eslint-plugin-react-hooks": "^2.5.1",
     "gh-pages": "^2.2.0",
     "prettier": "^1.19.1",
+    "redux-devtools-extension": "^2.13.8",
     "typescript": "^3.8.3"
   }
 }

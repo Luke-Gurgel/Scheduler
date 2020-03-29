@@ -1,7 +1,8 @@
+import { RootState } from "src/state/root-state"
 import { useSelector, useDispatch } from "react-redux"
 import { toggleThemeAction } from "src/state/theme/actions"
 import { toggleSideDrawerAction } from "src/state/side-drawer/actions"
-import { RootState } from "src/state/root-state"
+import { setAddMemberModalOpenAction } from "src/state/members/actions"
 
 export interface UseTopBar {
   sideDrawer: {
@@ -12,6 +13,7 @@ export interface UseTopBar {
     darkMode: boolean
     toggle: () => void
   }
+  openAddMemberModal: () => void
 }
 
 export default function useTopBar(): UseTopBar {
@@ -25,7 +27,12 @@ export default function useTopBar(): UseTopBar {
     dispatch(toggleSideDrawerAction())
   }
 
+  const openAddMemberModal = () => {
+    dispatch(setAddMemberModalOpenAction(true))
+  }
+
   return {
+    openAddMemberModal,
     theme: {
       darkMode: theme.darkMode,
       toggle: toggleTheme,

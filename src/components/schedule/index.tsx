@@ -12,11 +12,10 @@ const Schedule = () => {
   )
 
   function renderLists() {
-    return data.listOrder.map((listID, index) => {
-      const list = data.lists[listID]
+    return data.orderedWeekDays.map((weekDay, index) => {
+      const weekDayItem = data.weekMap[weekDay]
       const date = format(currentWeek[index], "MM/dd")
-      const members = list.memberIDs.map((memberID) => data.members[memberID])
-      return <List key={list.id} list={list} members={members} date={date} />
+      return <List weekDayItem={weekDayItem} date={date} key={weekDayItem.id} />
     })
   }
 
