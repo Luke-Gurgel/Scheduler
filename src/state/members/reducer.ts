@@ -13,7 +13,7 @@ export default function(
         (mem) => mem.id !== action.member.id,
       )
       return { ...state, list: filteredList }
-    case MembersAction.UPDATE_MEMBER:
+    case MembersAction.UPDATE_MEMBER_LIST:
       const updatedList = state.list.map((mem) => {
         return mem.id === action.member.id ? action.member : mem
       })

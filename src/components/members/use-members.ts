@@ -21,7 +21,6 @@ export default function useMembers(): UseMembers {
   }
 
   useEffect(() => {
-    console.log("list updated")
     bottomRef.current?.scrollIntoView({ behavior: "smooth" })
   }, [list])
 

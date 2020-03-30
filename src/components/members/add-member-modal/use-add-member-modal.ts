@@ -1,8 +1,8 @@
 import { useForm, FormContextValues } from "react-hook-form"
 import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "src/state/root-state"
-import { v4 as uuidv4 } from "uuid"
 import { idSeparator } from "src/constants"
+import { v4 as uuidv4 } from "uuid"
 import {
   addMemberAction,
   setLoadingAction,
@@ -36,18 +36,16 @@ export default function useAddMemberModal(): UseAddMemberModal {
 
   const onSubmit = form.handleSubmit(({ name, email }) => {
     dispatch(setLoadingAction(true))
-    setTimeout(() => {
-      dispatch(
-        addMemberAction({
-          id: `members${idSeparator}${uuidv4()}`,
-          name,
-          email,
-        }),
-      )
-      dispatch(setLoadingAction(false))
-      dispatch(setAddMemberModalOpenAction(false))
-      form.reset()
-    }, 2000)
+    dispatch(
+      addMemberAction({
+        id: `members${idSeparator}${uuidv4()}`,
+        name,
+        email,
+      }),
+    )
+    dispatch(setLoadingAction(false))
+    dispatch(setAddMemberModalOpenAction(false))
+    form.reset()
   })
 
   const cancel = () => {

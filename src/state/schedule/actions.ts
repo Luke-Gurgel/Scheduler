@@ -1,9 +1,9 @@
-import { WeekDayItem } from "src/types"
+import { WeekDayItem, ScheduleMemberItem } from "src/types"
 
 export enum ScheduleAction {
   UPDATE_WEEK_DAY_ITEMS = "UPDATE_WEEK_DAY_ITEMS",
 
-  ADD_MEMBER = "ADD_MEMBER",
+  UPDATE_MEMBER = "UPDATE_MEMBER",
   REMOVE_MEMBER = "REMOVE_MEMBER",
 
   GET_NEXT_WEEK = "GET_NEXT_WEEK",
@@ -27,10 +27,16 @@ export interface GetPrevWeekAction {
   prevWeek: Date[]
 }
 
+export interface UpdateMemberAction {
+  type: typeof ScheduleAction.UPDATE_MEMBER
+  member: ScheduleMemberItem
+}
+
 export type ScheduleActionType =
   | UpdateWeekDayItemsAction
   | GetNextWeekAction
   | GetPrevWeekAction
+  | UpdateMemberAction
 
 export const updateWeekDayItemsAction = (updatedItems: {
   [key: string]: WeekDayItem
@@ -49,29 +55,9 @@ export const getPrevWeekAction = (prevWeek: Date[]): GetPrevWeekAction => ({
   type: ScheduleAction.GET_PREV_WEEK,
 })
 
-/*
-
-  1 - drag member to a different position in the same list => {
-    reorderList()
-  }
-
-  2 - drag member from a list into another list => {
-    removeMemberFromSourceList()
-    addMemberToDestList()
-    dedupDestList()
-  }
-
-  3 - drag member out of a list => {
-    removeMemberFromList()
-  }
-
-  4 - drag member from members list into a schedule list => {
-    addMemberToDestList()
-    // leave members list unchanged
-  }
-
-  5 - drag member to a different position in members list => {
-    reorderList()
-  }
-
-*/
+export const updateMemberAction = (
+  member: ScheduleMemberItem,
+): UpdateMemberAction => ({
+  member,
+  type: ScheduleAction.UPDATE_MEMBER,
+})

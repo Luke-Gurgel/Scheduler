@@ -1,7 +1,7 @@
 import React from "react"
 import useTopBar from "./use-topbar"
 import * as Styled from "./styled"
-import BurgerMenu from "../burger-menu"
+import BurgerMenu from "./burger-menu"
 import logo from "src/assets/logo.svg"
 import dark from "src/assets/dark.svg"
 import light from "src/assets/light.svg"

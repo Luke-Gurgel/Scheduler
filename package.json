@@ -14,6 +14,7 @@
     "react-scripts": "^3.4.1",
     "react-spinners-kit": "^1.9.1",
     "react-switch": "^5.0.1",
+    "react-tiny-popover": "^4.0.0",
     "redux": "^4.0.5",
     "rodal": "^1.8.1",
     "styled-components": "^5.0.1",

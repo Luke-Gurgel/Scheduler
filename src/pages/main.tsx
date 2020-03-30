@@ -7,10 +7,10 @@ import Schedule from "src/components/schedule"
 import MemberList from "src/components/members"
 import { RootState } from "src/state/root-state"
 import styled, { ThemeProvider } from "styled-components"
+import { idSeparator, memberListID } from "src/constants"
+import { ThemeProps, WeekDayItem, ScheduleMemberItem } from "src/types"
 import { DragDropContext, DropResult } from "react-beautiful-dnd"
 import { updateWeekDayItemsAction } from "src/state/schedule/actions"
-import { ThemeProps, WeekDayItem, Member, memberListID } from "src/types"
-import { idSeparator } from "src/constants"
 
 const View = styled.div`
   min-height: 100vh;
@@ -29,7 +29,6 @@ const Main = () => {
     const { source, destination, draggableId } = res
 
     if (!destination) {
-      // remove member from list if source is not members list
       return
     }
 
@@ -75,7 +74,7 @@ const Main = () => {
       const sourceItem = schedule.data.weekMap[source.droppableId]
       const member = sourceItem.members.find(
         (mem) => mem.id === draggableId,
-      ) as Member
+      ) as ScheduleMemberItem
       const sourceMemberList = sourceItem.members.filter(
         (_, i) => i !== source.index,
       )
@@ -93,7 +92,7 @@ const Main = () => {
       const sourceItem = schedule.data.weekMap[source.droppableId]
       const member = sourceItem.members.find(
         (mem) => mem.id === draggableId,
-      ) as Member
+      ) as ScheduleMemberItem
       const updatedMemberList = sourceItem.members.filter(
         (_, i) => i !== source.index,
       )

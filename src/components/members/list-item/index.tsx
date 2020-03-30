@@ -1,7 +1,9 @@
-import React, { memo } from "react"
+import React, { memo, useState } from "react"
 import * as Styled from "./styled"
 import { Member } from "src/types"
+import Popover from "react-tiny-popover"
 import { Draggable } from "react-beautiful-dnd"
+import MemberPopover from "src/components/popover"
 
 interface Props {
   member: Member
@@ -9,19 +11,36 @@ interface Props {
 }
 
 const ListItem = ({ member, index }: Props) => {
+  const [open, setOpen] = useState(false)
+
   return (
     <Styled.Container>
       <Draggable draggableId={member.id} index={index}>
         {(provided, snapshot) => (
-          <Styled.InnerContainer
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-            ref={provided.innerRef}
-            isDragging={snapshot.isDragging}
+          <Popover
+            isOpen={open}
+            padding={20}
+            content={
+              <MemberPopover
+                member={member}
+                source="members"
+                close={() => setOpen(false)}
+              />
+            }
+            onClickOutside={() => setOpen(!open)}
+            position={["right", "left", "top", "bottom"]}
           >
-            <img src="https://i.pravatar.cc/100" alt="user" />
-            <span>{member.name}</span>
-          </Styled.InnerContainer>
+            <Styled.InnerContainer
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              ref={provided.innerRef}
+              onClick={() => setOpen(!open)}
+              isDragging={snapshot.isDragging}
+            >
+              <img src="https://i.pravatar.cc/100" alt="user" />
+              <span>{member.name}</span>
+            </Styled.InnerContainer>
+          </Popover>
         )}
       </Draggable>
     </Styled.Container>

@@ -22,3 +22,9 @@ export interface WeekDayItem {
   weekDay: WeekDay
   members: Member[]
 }
+
+export interface ScheduleMemberItem extends Member {
+  role?: string
+  start?: string
+  end?: string
+}

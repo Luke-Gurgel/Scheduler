@@ -2,7 +2,7 @@ import { Member } from "src/types"
 
 export enum MembersAction {
   ADD_MEMBER = "ADD_MEMBER",
-  UPDATE_MEMBER = "UPDATE_MEMBER",
+  UPDATE_MEMBER_LIST = "UPDATE_MEMBER_LIST",
   REMOVE_MEMBER = "REMOVE_MEMBER",
 
   SET_ADD_MEMBER_MODAL_OPEN = "SET_ADD_MEMBER_MODAL_OPEN",
@@ -14,8 +14,8 @@ export interface AddMemberAction {
   member: Member
 }
 
-export interface UpdateMemberAction {
-  type: typeof MembersAction.UPDATE_MEMBER
+export interface UpdateMemberListAction {
+  type: typeof MembersAction.UPDATE_MEMBER_LIST
   member: Member
 }
 
@@ -39,9 +39,11 @@ export const addMemberAction = (member: Member): AddMemberAction => ({
   type: MembersAction.ADD_MEMBER,
 })
 
-export const udpatedMemberAction = (member: Member): UpdateMemberAction => ({
+export const updatedMemberListAction = (
+  member: Member,
+): UpdateMemberListAction => ({
   member,
-  type: MembersAction.UPDATE_MEMBER,
+  type: MembersAction.UPDATE_MEMBER_LIST,
 })
 
 export const removeMemberAction = (member: Member): RemoveMemberAction => ({
@@ -63,7 +65,7 @@ export const setLoadingAction = (loading: boolean): SetLoadingAction => ({
 
 export type MembersActionType =
   | AddMemberAction
-  | UpdateMemberAction
+  | UpdateMemberListAction
   | RemoveMemberAction
   | SetAddMemberModalOpenAction
   | SetLoadingAction
