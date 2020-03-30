@@ -19,6 +19,9 @@ const ListItem = ({ item, index }: Props) => {
         <Popover
           isOpen={open}
           padding={20}
+          onClickOutside={() => setOpen(!open)}
+          containerClassName="popover-container"
+          position={["right", "left", "top", "bottom"]}
           content={
             <MemberPopover
               member={item}
@@ -26,8 +29,6 @@ const ListItem = ({ item, index }: Props) => {
               close={() => setOpen(false)}
             />
           }
-          onClickOutside={() => setOpen(!open)}
-          position={["right", "left", "top", "bottom"]}
         >
           <Styled.Container
             {...provided.draggableProps}

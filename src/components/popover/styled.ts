@@ -5,14 +5,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 20vw;
-  padding: 20px 15px;
+  padding: 15px 0;
   overflow-y: scroll;
   border-radius: 4px;
   background-color: ${(props: ThemeProps) => props.theme.bg2};
-
-  @media screen and (max-width: 562px) {
-    max-width: 70vw;
-  }
 `
 
 export const ProfilePic = styled.img`
@@ -26,12 +22,14 @@ export const ProfilePic = styled.img`
 export const RowContainer = styled.div`
   display: flex;
   margin-top: 15px;
+  padding: 0 15px 8px 15px;
   flex-direction: row;
-  align-items: center;
   justify-content: space-between;
+  border-bottom: ${(props: ThemeProps) => `0.5px solid ${props.theme.bg4}`};
 
   label {
     text-align: left;
+    font-style: italic;
     color: ${(props: ThemeProps) => props.theme.txt3};
   }
 

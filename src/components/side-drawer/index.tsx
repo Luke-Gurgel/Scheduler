@@ -1,5 +1,6 @@
 import React from "react"
 import * as Styled from "./styled"
+import { version } from "src/constants"
 import useSideDrawer from "./use-side-drawer"
 
 const SideDrawer = () => {
@@ -11,22 +12,20 @@ const SideDrawer = () => {
         <img src="https://i.pravatar.cc/100" alt="user" />
         <span>Thais Marques</span>
       </Styled.ProfilePicItem>
-      <a href="/">
-        <span role="img" aria-label="add new member">
-          🤓
-        </span>
-        Add new member
-      </a>
-      <a href="/">
-        <span role="img" aria-label="add new member">
-          📖
-        </span>
-        Schedule History
-      </a>
-      <Styled.ThemeSwitchItem>
+      <Styled.RowContainer>
+        <a href="/">Add new member</a>
+      </Styled.RowContainer>
+      <Styled.RowContainer>
+        <a href="/">Schedule History</a>
+      </Styled.RowContainer>
+      <Styled.RowContainer>
         <span>Dark Mode</span>
         <Styled.ThemeSwitch onChange={theme.toggle} checked={theme.darkMode} />
-      </Styled.ThemeSwitchItem>
+      </Styled.RowContainer>
+      <Styled.RowContainer>
+        <span>Version</span>
+        <span>{version}</span>
+      </Styled.RowContainer>
     </Styled.Drawer>
   )
 }

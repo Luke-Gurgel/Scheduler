@@ -24,9 +24,7 @@ export const Drawer = styled.nav<{ open: boolean }>`
   }
 
   a {
-    margin: 10px 0;
     font-size: 1rem;
-    padding: 10px 0;
     user-select: none;
     font-weight: bold;
     border-radius: 8px;
@@ -57,9 +55,9 @@ export const ProfilePicItem = styled.div`
   }
 `
 
-export const ThemeSwitchItem = styled.div`
+export const RowContainer = styled.div`
   display: flex;
-  margin-top: 10px;
+  margin-top: 4vh;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;

@@ -3,14 +3,15 @@ import { dark, light } from "src/themes"
 import { useSelector, useDispatch } from "react-redux"
 import SideDrawer from "src/components/side-drawer"
 import TopBar from "src/components/topbar"
+import Footer from "src/components/footer"
 import Schedule from "src/components/schedule"
 import MemberList from "src/components/members"
 import { RootState } from "src/state/root-state"
 import styled, { ThemeProvider } from "styled-components"
 import { idSeparator, memberListID } from "src/constants"
-import { ThemeProps, WeekDayItem, ScheduleMemberItem } from "src/types"
 import { DragDropContext, DropResult } from "react-beautiful-dnd"
 import { updateWeekDayItemsAction } from "src/state/schedule/actions"
+import { ThemeProps, WeekDayItem, ScheduleMemberItem } from "src/types"
 
 const View = styled.div`
   min-height: 100vh;
@@ -114,6 +115,7 @@ const Main = () => {
         </DragDropContext>
         <SideDrawer />
       </View>
+      <Footer />
     </ThemeProvider>
   )
 }

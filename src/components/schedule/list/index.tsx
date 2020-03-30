@@ -28,6 +28,7 @@ const List = ({ weekDayItem, date }: Props) => {
         padding={20}
         isOpen={open}
         onClickOutside={() => setOpen(!open)}
+        containerClassName="popover-container"
         position={["right", "left", "top", "bottom"]}
         content={<MemberListPopover dayID={weekDayItem.id} />}
       >
