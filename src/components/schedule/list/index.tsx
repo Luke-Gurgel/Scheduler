@@ -1,9 +1,10 @@
-import React from "react"
-import CTAItem from "../cta-item"
+import React, { useState } from "react"
 import * as Styled from "./styled"
 import ListItem from "../list-item"
 import { WeekDayItem } from "src/types"
+import Popover from "react-tiny-popover"
 import { Droppable } from "react-beautiful-dnd"
+import MemberListPopover from "src/components/member-list-popover"
 
 interface Props {
   date: string
@@ -11,11 +12,9 @@ interface Props {
 }
 
 const List = ({ weekDayItem, date }: Props) => {
-  const renderItems = () => {
-    if (!weekDayItem.members.length) {
-      return <CTAItem />
-    }
+  const [open, setOpen] = useState(false)
 
+  const renderItems = () => {
     return weekDayItem.members.map((member, i) => (
       <ListItem key={member.name} item={member} index={i} />
     ))
@@ -25,10 +24,18 @@ const List = ({ weekDayItem, date }: Props) => {
 
   return (
     <Styled.Container>
-      <Styled.SectionContainer>
-        <Styled.WeekDayTitle>{weekDayItem.weekDay}</Styled.WeekDayTitle>
-        <Styled.DateSubtitle>{date}</Styled.DateSubtitle>
-      </Styled.SectionContainer>
+      <Popover
+        padding={20}
+        isOpen={open}
+        onClickOutside={() => setOpen(!open)}
+        position={["right", "left", "top", "bottom"]}
+        content={<MemberListPopover dayID={weekDayItem.id} />}
+      >
+        <Styled.SectionContainer focused={open} onClick={() => setOpen(!open)}>
+          <Styled.WeekDayTitle>{weekDayItem.weekDay}</Styled.WeekDayTitle>
+          <Styled.DateSubtitle>{date}</Styled.DateSubtitle>
+        </Styled.SectionContainer>
+      </Popover>
       <Droppable droppableId={weekDayItem.id} direction={listDirection}>
         {(provided, snapshot) => (
           <Styled.List

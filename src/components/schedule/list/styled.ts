@@ -21,11 +21,19 @@ export const Container = styled.div`
   }
 `
 
-export const SectionContainer = styled.div`
+export const SectionContainer = styled.div<{ focused: boolean }>`
   display: flex;
+  padding: 10px 0;
+  cursor: pointer;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  transition: all 0.3s linear;
+
+  box-shadow: ${({ focused }) =>
+    focused ? " 0px 4px 10px 0px rgba(0, 0, 0, 0.1)" : ""};
+  background-color: ${({ theme, focused }) =>
+    focused ? theme.bg2 : "transparent"};
 
   @media screen and (max-width: 800px) {
     padding: 0 15px;
@@ -35,10 +43,17 @@ export const SectionContainer = styled.div`
       font-size: 1rem;
     }
   }
+
+  @media screen and (hover: hover) and (pointer: fine) {
+    :hover {
+      box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+      background-color: ${(props: ThemeProps) => props.theme.bg2};
+    }
+  }
 `
 
 export const WeekDayTitle = styled.h3`
-  margin: 15px 0 0 0;
+  margin: 0;
   text-align: center;
   color: ${(props: ThemeProps) => props.theme.txt2};
 `
