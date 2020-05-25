@@ -77,6 +77,12 @@ export const List = styled.div<DroppableListProps>`
   padding: 12px;
   min-height: 12vh;
   transition: background-color 0.4s ease-in-out;
+  max-height: 500px;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    width: 0 !important;
+  }
+  -ms-overflow-style: none;
 
   background-color: ${(props: DroppableListProps) =>
     props.isDraggingOver ? "rgba(0,0,0,0.2)" : `transparent`};
